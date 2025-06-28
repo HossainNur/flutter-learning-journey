@@ -1,107 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learning_topic/practice.dart';
 
-main(){
-  runApp(const MyApp()); // Application
+main() {
+  runApp(const MyApp());
 }
-class MyApp extends StatelessWidget{
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
-        darkTheme: ThemeData(primarySwatch: Colors.indigo),
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
         debugShowCheckedModeBanner: false,
         home: HomeActivity());
   }
-
 }
 
-class HomeActivity extends StatelessWidget{
+class HomeActivity extends StatelessWidget {
   const HomeActivity({super.key});
-
-  MySnackBar(message,context){
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message))
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.contact_emergency),label: "Contact"),
-          BottomNavigationBarItem(icon: Icon(Icons.email),label: "Email"),
-        ],
-        onTap: (int index){
-          if(index== 0){
-            MySnackBar("home", context);
-          }
-          if(index== 1){
-            MySnackBar("contact", context);
-          }
-          if(index== 2){
-            MySnackBar("email", context);
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(elevation: 10, child: Icon(Icons.add), onPressed: (){MySnackBar("Floating Action Button", context);}),
+    return  Scaffold(
       appBar: AppBar(
-        title: Text("Nur"),
+        title: Text("My App Bar"),
+        backgroundColor: Colors.cyan,
         titleSpacing: 0,
+        toolbarHeight: 60,
         centerTitle: true,
-        toolbarHeight: 50,
-        toolbarOpacity: 1,
-        elevation: 90,
-        backgroundColor: Colors.green,
+        elevation: 5000,
+        toolbarOpacity: 0.5,
         actions: [
-          IconButton(onPressed: (){MySnackBar("Comments", context);}, icon: Icon(Icons.comment)),
-          IconButton(onPressed: (){MySnackBar("Search", context);}, icon: Icon(Icons.search)),
-          IconButton(onPressed: (){MySnackBar("Email", context);}, icon: Icon(Icons.email)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.comment)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.email)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.settings))
         ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text("Nur Hossain")),
-            ListTile(leading:Icon(Icons.home),title: Text("Home"),onTap: (){
-              MySnackBar("home", context);
-            },),
-            ListTile(leading:Icon(Icons.contact_emergency),title: Text("Contact")),
-            ListTile(leading:Icon(Icons.email),title: Text("Email"))
-          ],
-        ),
-      ),
-      endDrawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text("Nur Hossain")),
-            ListTile(leading:Icon(Icons.home),title: Text("Home"),onTap: (){
-              MySnackBar("home", context);
-            },),
-            ListTile(leading:Icon(Icons.contact_emergency),title: Text("Contact")),
-            ListTile(leading:Icon(Icons.email),title: Text("Email"))
-          ],
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.network('https://picsum.photos/250?image=9'),
-            CircularProgressIndicator(),
-            SizedBox(
-              height: 15,
-            ),
-            LinearProgressIndicator(),
-          ],
-        ),
       ),
     );
   }
-
 }
-
